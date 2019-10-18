@@ -4,7 +4,7 @@
 
 This is a simple app created with flutter
 
-![screenshot](<./Screen Shot.png>)
+<img src="./Screen Shot.png" width="200">
 
 `flutter packages get`
 
