@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:tic_toc_toe/ResetButton.dart';
 import 'package:tic_toc_toe/ScoreBoard.dart';
 import 'package:flutter/material.dart';
@@ -128,7 +130,6 @@ class MyAppState extends State<MyApp> {
                             color: determineColorIcon(2),
                             iconSize: 70,
                             icon: Icon(whichPlayer(2)),
-                            splashColor: Colors.black,
                             onPressed: () {
                               determineUser(player, 2);
                             },
@@ -151,7 +152,6 @@ class MyAppState extends State<MyApp> {
                             color: determineColorIcon(3),
                             iconSize: 70,
                             icon: Icon(whichPlayer(3)),
-                            splashColor: Colors.black,
                             onPressed: () {
                               determineUser(player, 3);
                             },
@@ -168,7 +168,6 @@ class MyAppState extends State<MyApp> {
                             color: determineColorIcon(4),
                             iconSize: 70,
                             icon: Icon(whichPlayer(4)),
-                            splashColor: Colors.black,
                             onPressed: () {
                               determineUser(player, 4);
                             },
@@ -185,7 +184,6 @@ class MyAppState extends State<MyApp> {
                             color: determineColorIcon(5),
                             iconSize: 70,
                             icon: Icon(whichPlayer(5)),
-                            splashColor: Colors.black,
                             onPressed: () {
                               determineUser(player, 5);
                             },
@@ -207,7 +205,6 @@ class MyAppState extends State<MyApp> {
                             color: determineColorIcon(6),
                             iconSize: 70,
                             icon: Icon(whichPlayer(6)),
-                            splashColor: Colors.black,
                             onPressed: () {
                               determineUser(player, 6);
                             },
@@ -224,7 +221,6 @@ class MyAppState extends State<MyApp> {
                             color: determineColorIcon(7),
                             iconSize: 70,
                             icon: Icon(whichPlayer(7)),
-                            splashColor: Colors.black,
                             onPressed: () {
                               determineUser(player, 7);
                             },
@@ -241,7 +237,6 @@ class MyAppState extends State<MyApp> {
                             color: determineColorIcon(8),
                             iconSize: 70,
                             icon: Icon(whichPlayer(8)),
-                            splashColor: Colors.black,
                             onPressed: () {
                               determineUser(player, 8);
                             },
@@ -290,8 +285,11 @@ class MyAppState extends State<MyApp> {
       setState(() {
         winner = 'O Win';
       });
-      resetButtonOnPress();
-      OScore++;
+      Timer(Duration(seconds: 3), () {
+        resetButtonOnPress();
+        OScore++;
+        winner = '';
+      });
     }
     if ((boolPlayer[0] == 2 && boolPlayer[1] == 2 && boolPlayer[2] == 2) ||
         (boolPlayer[3] == 2 && boolPlayer[4] == 2 && boolPlayer[5] == 2) ||
@@ -305,8 +303,11 @@ class MyAppState extends State<MyApp> {
       setState(() {
         winner = 'X Win';
       });
-      resetButtonOnPress();
-      XScore++;
+      Timer(Duration(seconds: 3), () {
+        resetButtonOnPress();
+        XScore++;
+        winner = '';
+      });
     }
   }
 }
