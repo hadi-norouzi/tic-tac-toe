@@ -24,6 +24,7 @@ class MyAppState extends State<MyApp> {
   int XScore = 0;
   int OScore = 0;
   String winner = 'TicTocToe';
+  bool isWon = false;
 
   resetButtonOnPress() {
     setState(() {
@@ -256,20 +257,22 @@ class MyAppState extends State<MyApp> {
   }
 
   void determineUser(bool user, int situation) {
-    if (boolPlayer[situation] == 0) {
-      if (user) {
-        setState(() {
-          boolPlayer[situation] = 1;
-          player = !player;
-        });
-      } else {
-        setState(() {
-          boolPlayer[situation] = 2;
-          player = !player;
-        });
+    if (!isWon) {
+      if (boolPlayer[situation] == 0) {
+        if (user) {
+          setState(() {
+            boolPlayer[situation] = 1;
+            player = !player;
+          });
+        } else {
+          setState(() {
+            boolPlayer[situation] = 2;
+            player = !player;
+          });
+        }
       }
+      checkWin();
     }
-    checkWin();
   }
 
   checkWin() {
@@ -284,12 +287,15 @@ class MyAppState extends State<MyApp> {
       // print('player O win');
       setState(() {
         winner = 'O Win';
+        isWon = true;
       });
       Timer(Duration(seconds: 3), () {
         resetButtonOnPress();
         OScore++;
         winner = '';
+        isWon = false;
       });
+
     }
     if ((boolPlayer[0] == 2 && boolPlayer[1] == 2 && boolPlayer[2] == 2) ||
         (boolPlayer[3] == 2 && boolPlayer[4] == 2 && boolPlayer[5] == 2) ||
@@ -302,12 +308,15 @@ class MyAppState extends State<MyApp> {
       // print('player X win');
       setState(() {
         winner = 'X Win';
+        isWon = true;
       });
       Timer(Duration(seconds: 3), () {
         resetButtonOnPress();
         XScore++;
         winner = '';
+        isWon = false;
       });
+
     }
   }
 }
