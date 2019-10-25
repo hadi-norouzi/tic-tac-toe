@@ -337,6 +337,18 @@ class MyAppState extends State<MyApp> with FlareController {
         winner = '';
       });
     }
+    if (!won) {
+      int k = 0;
+      for (int i = 0; i < boolPlayer.length; i++) {
+        if (boolPlayer[i] != 0) k++;
+      }
+      if (k == boolPlayer.length) {
+        Timer(Duration(seconds: 1), () {
+          resetButtonOnPress();
+          winner = '';
+        });
+      }
+    }
   }
 
   @override
