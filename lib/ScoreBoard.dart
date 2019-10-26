@@ -5,7 +5,7 @@ class ScoreBoard extends StatelessWidget {
   final int X_Score;
   final int games;
   final String winner;
-
+  Color textColor = Colors.white;
   ScoreBoard(this.O_Score, this.X_Score, this.games, this.winner);
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,10 @@ class ScoreBoard extends StatelessWidget {
             child: Center(
               child: Text(
                 winner,
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: textColor),
               ),
             ),
           ),
@@ -38,8 +41,16 @@ class ScoreBoard extends StatelessWidget {
                           Icons.panorama_fish_eye,
                           color: Colors.orange,
                         ),
-                        Text('Player1'),
-                        Text(O_Score.toString())
+                        Text(
+                          'Player1',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: textColor),
+                        ),
+                        Text(
+                          O_Score.toString(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: textColor),
+                        )
                       ],
                     ),
                   ),
@@ -53,16 +64,16 @@ class ScoreBoard extends StatelessWidget {
                         Text(
                           'Games',
                           style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: textColor),
                         ),
                         Text(
                           games.toString(),
                           style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                          ),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: textColor),
                         ),
                       ],
                     ),
@@ -79,8 +90,16 @@ class ScoreBoard extends StatelessWidget {
                           color: Colors.yellow,
                           size: 26,
                         ),
-                        Text('Player2'),
-                        Text(X_Score.toString())
+                        Text(
+                          'Player2',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: textColor),
+                        ),
+                        Text(
+                          X_Score.toString(),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, color: textColor),
+                        )
                       ],
                     ),
                   ),
