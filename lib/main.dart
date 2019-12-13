@@ -5,9 +5,9 @@ import 'package:flare_flutter/flare_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-import 'package:tic_toc_toe/Board.dart';
-import 'package:tic_toc_toe/ResetButton.dart';
-import 'package:tic_toc_toe/ScoreBoard.dart';
+import 'package:TicTocToe/Board.dart';
+import 'package:TicTocToe/ResetButton.dart';
+import 'package:TicTocToe/ScoreBoard.dart';
 
 main() => runApp(MyApp());
 
@@ -57,7 +57,6 @@ class MyAppState extends State<MyApp> with FlareController {
 
   bool isEmptyBoard() {
     for (int i = 0; i < boolPlayer.length; i++) {
-      // print('$boolPlayer this in loop');
       if (boolPlayer[i] != 0) {
         return false;
       }
@@ -78,7 +77,7 @@ class MyAppState extends State<MyApp> with FlareController {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        // bottomSheet: ,
+
         appBar: AppBar(
           backgroundColor: Color(0xFF2C6171),
           title: Text(
@@ -130,8 +129,6 @@ class MyAppState extends State<MyApp> with FlareController {
         (boolPlayer[2] == 1 && boolPlayer[5] == 1 && boolPlayer[8] == 1) ||
         (boolPlayer[0] == 1 && boolPlayer[4] == 1 && boolPlayer[8] == 1) ||
         (boolPlayer[2] == 1 && boolPlayer[4] == 1 && boolPlayer[6] == 1)) {
-      // print('player O win');
-      //show flare and hide
 
       setState(() {
         winner = 'O Win';
@@ -154,7 +151,6 @@ class MyAppState extends State<MyApp> with FlareController {
         (boolPlayer[2] == 2 && boolPlayer[5] == 2 && boolPlayer[8] == 2) ||
         (boolPlayer[0] == 2 && boolPlayer[4] == 2 && boolPlayer[8] == 2) ||
         (boolPlayer[2] == 2 && boolPlayer[4] == 2 && boolPlayer[6] == 2)) {
-      // print('player X win');
       setState(() {
         winner = 'X Win';
         won = true;

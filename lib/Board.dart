@@ -19,10 +19,6 @@ class Board extends StatelessWidget {
           ? Opacity(
               opacity: won ? 1 : 0.0,
               child: FlareActor("asset/celebration.flr",
-                  // You can find the
-                  // example
-                  // project
-                  // here: https://www.2dimensions.com/a/castor/files/flare/change-color-example
                   fit: BoxFit.contain,
                   animation: won ? "Untitled" : null,
                   alignment: Alignment.center,
@@ -38,8 +34,6 @@ class Board extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     Expanded(
-                      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
                       child: Row(
                         children: <Widget>[
                           Expanded(
@@ -87,7 +81,6 @@ class Board extends StatelessWidget {
                         ],
                       ),
                     ),
-                    // SizedBox(width: 3),
                     Divider(
                       color: Color(0xFF2C6171),
                       height: 10,

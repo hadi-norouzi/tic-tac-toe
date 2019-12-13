@@ -9,7 +9,6 @@ class ResetButton extends StatelessWidget {
     return IconButton(
       icon: Icon(Icons.autorenew),
       onPressed: () {
-        print('$context this reset');
         showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -22,7 +21,6 @@ class ResetButton extends StatelessWidget {
                     child: Text('Cancel'),
                     onPressed: () {
                       Navigator.of(context).pop();
-                      //reset();
                     },
                   ),
                   FlatButton(
