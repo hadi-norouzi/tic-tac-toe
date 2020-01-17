@@ -1,4 +1,4 @@
-# Tic Toc Toe
+# Tic Tac Toe
 
 ## Getting Started
 

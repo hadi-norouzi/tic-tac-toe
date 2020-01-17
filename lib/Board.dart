@@ -1,26 +1,30 @@
+import 'dart:async';
+import 'package:TicTacToe/utils/util.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'model/BoardValues.dart';
+import 'model/ScoreBoardValues.dart';
 
 class Board extends StatelessWidget {
-  final Function determineColorIcon;
-  final Function whichPlayer;
-  final Function determineUser;
-  final bool won;
   final dynamic parentClass;
-  final bool player;
+  var scoreBoardValues;
+  var boardValues;
 
-  Board(this.determineColorIcon, this.determineUser, this.whichPlayer, this.won,
-      this.player, this.parentClass);
+  Board(this.parentClass);
   @override
   Widget build(BuildContext context) {
+    scoreBoardValues = Provider.of<ScoreBoardValues>(context);
+    boardValues = Provider.of<BoardValues>(context);
+
     return Container(
       color: Color(0xFF3E7D91),
-      child: won
+      child: boardValues.won
           ? Opacity(
-              opacity: won ? 1 : 0.0,
+              opacity: boardValues.won ? 1 : 0.0,
               child: FlareActor("asset/celebration.flr",
                   fit: BoxFit.contain,
-                  animation: won ? "Untitled" : null,
+                  animation: boardValues.won ? "Untitled" : null,
                   alignment: Alignment.center,
                   controller: parentClass),
             )
@@ -36,48 +40,11 @@ class Board extends StatelessWidget {
                     Expanded(
                       child: Row(
                         children: <Widget>[
-                          Expanded(
-                            child: IconButton(
-                              color: determineColorIcon(0),
-                              iconSize: 70,
-                              icon: Icon(whichPlayer(0)),
-                              onPressed: () {
-                                determineUser(player, 0);
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5,
-                            child: Container(
-                              color: Color(0xFF2C6171),
-                            ),
-                          ),
-                          Expanded(
-                            child: IconButton(
-                              color: determineColorIcon(1),
-                              iconSize: 70,
-                              icon: Icon(whichPlayer(1)),
-                              onPressed: () {
-                                determineUser(player, 1);
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5,
-                            child: Container(
-                              color: Color(0xFF2C6171),
-                            ),
-                          ),
-                          Expanded(
-                            child: IconButton(
-                              color: determineColorIcon(2),
-                              iconSize: 70,
-                              icon: Icon(whichPlayer(2)),
-                              onPressed: () {
-                                determineUser(player, 2);
-                              },
-                            ),
-                          ),
+                          block(boardValues.won, 0, context),
+                          sizedBox(),
+                          block(boardValues.won, 1, context),
+                          sizedBox(),
+                          block(boardValues.won, 2, context),
                         ],
                       ),
                     ),
@@ -89,48 +56,11 @@ class Board extends StatelessWidget {
                     Expanded(
                       child: Row(
                         children: <Widget>[
-                          Expanded(
-                            child: IconButton(
-                              color: determineColorIcon(3),
-                              iconSize: 70,
-                              icon: Icon(whichPlayer(3)),
-                              onPressed: () {
-                                determineUser(player, 3);
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5,
-                            child: Container(
-                              color: Color(0xFF2C6171),
-                            ),
-                          ),
-                          Expanded(
-                            child: IconButton(
-                              color: determineColorIcon(4),
-                              iconSize: 70,
-                              icon: Icon(whichPlayer(4)),
-                              onPressed: () {
-                                determineUser(player, 4);
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5,
-                            child: Container(
-                              color: Color(0xFF2C6171),
-                            ),
-                          ),
-                          Expanded(
-                            child: IconButton(
-                              color: determineColorIcon(5),
-                              iconSize: 70,
-                              icon: Icon(whichPlayer(5)),
-                              onPressed: () {
-                                determineUser(player, 5);
-                              },
-                            ),
-                          ),
+                          block(boardValues.won, 3, context),
+                          sizedBox(),
+                          block(boardValues.won, 4, context),
+                          sizedBox(),
+                          block(boardValues.won, 5, context),
                         ],
                       ),
                     ),
@@ -142,48 +72,11 @@ class Board extends StatelessWidget {
                     Expanded(
                       child: Row(
                         children: <Widget>[
-                          Expanded(
-                            child: IconButton(
-                              color: determineColorIcon(6),
-                              iconSize: 70,
-                              icon: Icon(whichPlayer(6)),
-                              onPressed: () {
-                                determineUser(player, 6);
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5,
-                            child: Container(
-                              color: Color(0xFF2C6171),
-                            ),
-                          ),
-                          Expanded(
-                            child: IconButton(
-                              color: determineColorIcon(7),
-                              iconSize: 70,
-                              icon: Icon(whichPlayer(7)),
-                              onPressed: () {
-                                determineUser(player, 7);
-                              },
-                            ),
-                          ),
-                          SizedBox(
-                            width: 5,
-                            child: Container(
-                              color: Color(0xFF2C6171),
-                            ),
-                          ),
-                          Expanded(
-                            child: IconButton(
-                              color: determineColorIcon(8),
-                              iconSize: 70,
-                              icon: Icon(whichPlayer(8)),
-                              onPressed: () {
-                                determineUser(player, 8);
-                              },
-                            ),
-                          ),
+                          block(boardValues.won, 6, context),
+                          sizedBox(),
+                          block(boardValues.won, 7, context),
+                          sizedBox(),
+                          block(boardValues.won, 8, context),
                         ],
                       ),
                     ),
@@ -191,6 +84,52 @@ class Board extends StatelessWidget {
                 ),
               ),
             ),
+    );
+  }
+
+  void winner() {
+    int win = checkWin(boardValues.players);
+    if (win != 3) {
+      print(win);
+      boardValues.won = true;
+      Timer(
+        Duration(seconds: 3),
+        () {
+          if (win == 1) {
+            scoreBoardValues
+              ..increaseO()
+              ..increaseGame();
+          } else {
+            scoreBoardValues
+              ..increaseX()
+              ..increaseGame();
+          }
+          boardValues.resetBoard();
+          boardValues.won = false;
+        },
+      );
+      return;
+    }
+  }
+
+  Widget block(bool player, int i, context) {
+    return Consumer<BoardValues>(
+      builder: (BuildContext _, BoardValues value, Widget child) {
+        return Expanded(
+          child: AnimatedContainer(
+            duration: Duration(seconds: 3),
+            child: IconButton(
+              color: determineColorIcon(value.players, i),
+              iconSize: 70,
+              icon: Icon(whichPlayer(i, value.players)),
+              onPressed: () {
+                value.setIcon(i);
+                winner();
+              },
+            ),
+          ),
+        );
+      },
     );
   }
 }
