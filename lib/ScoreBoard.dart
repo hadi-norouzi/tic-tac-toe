@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'model/BoardValues.dart';
 import 'model/ScoreBoardValues.dart';
 
 class ScoreBoard extends StatelessWidget {
@@ -40,12 +41,13 @@ class ScoreBoard extends StatelessWidget {
                           Icon(
                             Icons.panorama_fish_eye,
                             color: Colors.orange,
+                            size: 30,
                           ),
-                          Text(
-                            'Player1',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, color: textColor),
-                          ),
+                          // Text(
+                          //   'Player1',
+                          //   style: TextStyle(
+                          //       fontWeight: FontWeight.bold, color: textColor),
+                          // ),
                           Text(
                             value.oScore.toString(),
                             style: TextStyle(
@@ -64,7 +66,7 @@ class ScoreBoard extends StatelessWidget {
                           Text(
                             'Games',
                             style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 20,
                                 fontWeight: FontWeight.w600,
                                 color: textColor),
                           ),
@@ -88,13 +90,13 @@ class ScoreBoard extends StatelessWidget {
                           Icon(
                             Icons.close,
                             color: Colors.yellow,
-                            size: 26,
+                            size: 30,
                           ),
-                          Text(
-                            'Player2',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, color: textColor),
-                          ),
+                          // Text(
+                          //   'Player2',
+                          //   style: TextStyle(
+                          //       fontWeight: FontWeight.bold, color: textColor),
+                          // ),
                           Text(
                             value.xScore.toString(),
                             style: TextStyle(
@@ -109,10 +111,32 @@ class ScoreBoard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
               ),
             ),
-            Container(
-              height: 10,
-              color: Color(0xFF2C6171),
-            )
+            Consumer<BoardValues>(
+              builder: (BuildContext context, BoardValues win, Widget child) {
+                return Container(
+                  color: Color(0xFF2C6171),
+                  height: 10,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 50, right: 50),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Container(
+                          width: 65,
+                          color: win.turn ? Colors.yellow : Color(0xFF2C6171),
+                        ),
+                        Container(
+                          width: 65,
+                          color: !win.turn ? Colors.yellow : Color(0xFF2C6171),
+                        )
+                      ],
+                    ),
+                  ),
+                  // color: Color(0xFF2C6171),
+                );
+              },
+            ),
           ],
         ),
       );

@@ -9,6 +9,11 @@ class BoardValues with ChangeNotifier {
   bool turn = false;
   BuildContext context;
 
+/*
+ * true for first player and have O
+ * false for second player and have X
+ */
+
   BoardValues();
 
   void resetBoard() {
