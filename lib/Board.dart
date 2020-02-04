@@ -19,6 +19,7 @@ class Board extends StatelessWidget {
     scoreBoardValues = Provider.of<ScoreBoardValues>(context);
     boardValues = Provider.of<BoardValues>(context);
     this.context = context;
+    print(MediaQuery.of(context).size.width);
 
     return Container(
       color: Color(0xFF3E7D91),
@@ -33,7 +34,9 @@ class Board extends StatelessWidget {
             )
           : Center(
               child: Container(
-                width: MediaQuery.of(context).size.width / 1.2,
+                width: MediaQuery.of(context).size.width < 600
+                    ? MediaQuery.of(context).size.width / 1.3
+                    : 400,
                 alignment: Alignment.center,
                 height: MediaQuery.of(context).size.height / 2,
                 child: Column(
@@ -133,18 +136,17 @@ class Board extends StatelessWidget {
     return Consumer<BoardValues>(
       builder: (BuildContext _, BoardValues value, Widget child) {
         return Expanded(
-          child: AnimatedContainer(
-            duration: Duration(seconds: 3),
-            child: Center(
-              child: IconButton(
-                color: determineColorIcon(value.players, i),
-                iconSize: MediaQuery.of(context).size.width / 5,
-                icon: Icon(whichPlayer(i, value.players)),
-                onPressed: () {
-                  value.setIcon(i);
-                  winner();
-                },
-              ),
+          child: Center(
+            child: IconButton(
+              color: determineColorIcon(value.players, i),
+              iconSize: MediaQuery.of(context).size.width < 1000
+                  ? MediaQuery.of(context).size.width / 9
+                  : 100,
+              icon: Icon(whichPlayer(i, value.players)),
+              onPressed: () {
+                value.setIcon(i);
+                winner();
+              },
             ),
           ),
         );

@@ -19,7 +19,6 @@ class ResetButton extends StatelessWidget {
               return CupertinoAlertDialog(
                 title: Text('Reset'),
                 content: Text('Are you sure?'),
-                // backgroundColor: Color(0xFF2C6171),
                 actions: <Widget>[
                   CupertinoDialogAction(
                     child: Text('Cancel'),
@@ -39,7 +38,6 @@ class ResetButton extends StatelessWidget {
               );
             });
       },
-      // tooltip: 'reset',
     );
   }
 }
