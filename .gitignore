@@ -94,3 +94,4 @@
 *.wasm
 *.wat
 *.xhtml
+!docs/*
