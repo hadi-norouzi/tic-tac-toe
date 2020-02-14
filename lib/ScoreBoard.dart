@@ -5,7 +5,6 @@ import 'model/ScoreBoardValues.dart';
 
 class ScoreBoard extends StatelessWidget {
   final Color textColor = Colors.white;
-  ScoreBoard();
   @override
   Widget build(BuildContext context) {
     return Consumer<ScoreBoardValues>(
@@ -113,34 +112,29 @@ class ScoreBoard extends StatelessWidget {
                   return Container(
                     color: Color(0xFF2C6171),
                     height: 10,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 0, right: 0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Flexible(
-                            flex: 1,
-                            child: Container(
-                              margin: EdgeInsets.only(left: 30),
-                              color:
-                                  win.turn ? Colors.yellow : Color(0xFF2C6171),
-                            ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Flexible(
+                          flex: 1,
+                          
+                          child: Container(
+                            color: win.turn ? Colors.yellow : Color(0xFF2C6171),
                           ),
-                          Flexible(
-                            child: Container(),
-                            flex: 2,
+                        ),
+                        Flexible(
+                          child: Container(),
+                          flex: 2,
+                        ),
+                        Flexible(
+                          flex: 1,
+                          child: Container(
+                            color:
+                                !win.turn ? Colors.yellow : Color(0xFF2C6171),
                           ),
-                          Flexible(
-                            flex: 1,
-                            child: Container(
-                              margin: EdgeInsets.only(right: 30),
-                              color:
-                                  !win.turn ? Colors.yellow : Color(0xFF2C6171),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   );
                 },

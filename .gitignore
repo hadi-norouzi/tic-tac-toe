@@ -95,3 +95,5 @@
 *.wat
 *.xhtml
 !docs/*
+
+task.txt

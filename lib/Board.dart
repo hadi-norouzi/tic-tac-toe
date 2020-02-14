@@ -7,13 +7,33 @@ import 'package:provider/provider.dart';
 import 'model/BoardValues.dart';
 import 'model/ScoreBoardValues.dart';
 
-class Board extends StatelessWidget {
+class Board extends StatelessWidget{
   final dynamic parentClass;
+  Board(this.parentClass);
   var scoreBoardValues;
   var boardValues;
   var context;
+  AnimationController animationController;
+  Animation<double> animation;
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   animationController = AnimationController(
+  //     vsync: this,
+  //     duration: Duration(seconds: 2),
+  //     value: .01,
+  //   );
+  //   animation =
+  //       CurvedAnimation(parent: animationController, curve: Curves.easeInOut);
+  //   animationController.forward();
+  // }
 
-  Board(this.parentClass);
+  // @override
+  // void dispose() {
+  //   animationController.dispose();
+  //   super.dispose();
+  // }
+
   @override
   Widget build(BuildContext context) {
     scoreBoardValues = Provider.of<ScoreBoardValues>(context);
@@ -38,7 +58,7 @@ class Board extends StatelessWidget {
                     ? MediaQuery.of(context).size.width / 1.3
                     : 400,
                 alignment: Alignment.center,
-                height: MediaQuery.of(context).size.height / 2,
+                height: MediaQuery.of(context).size.height / 2.5,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -140,11 +160,13 @@ class Board extends StatelessWidget {
             child: IconButton(
               color: determineColorIcon(value.players, i),
               iconSize: MediaQuery.of(context).size.width < 1000
-                  ? MediaQuery.of(context).size.width / 9
+                  ? MediaQuery.of(context).size.width / 5
                   : 100,
               icon: Icon(whichPlayer(i, value.players)),
               onPressed: () {
+                // animationController.forward();
                 value.setIcon(i);
+
                 winner();
               },
             ),

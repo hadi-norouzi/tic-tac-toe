@@ -4,10 +4,26 @@ class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.wb_sunny),
-        backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Text('Menu'),
+      ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          FloatingActionButton(
+            heroTag: 1,
+            onPressed: () {
+              Navigator.pushNamed(context, 'about');
+            },
+            child: Icon(Icons.help_outline),
+          ),
+          FloatingActionButton(
+            heroTag: 2,
+            onPressed: () {},
+            child: Icon(Icons.wb_sunny),
+            backgroundColor: Colors.white,
+          ),
+        ],
       ),
       body: Container(
         color: Colors.red,

@@ -25,7 +25,6 @@ class BoardValues with ChangeNotifier {
 
   void setIcon(int index) {
     determineUser(players, turn, index);
-    turn = !turn;
     notifyListeners();
   }
 
@@ -33,11 +32,12 @@ class BoardValues with ChangeNotifier {
     if (boolPlayer[situation] == 0) {
       if (turn) {
         boolPlayer[situation] = 1;
-        turn = !turn;
+        this.turn = !turn;
       } else {
         boolPlayer[situation] = 2;
-        turn = !turn;
+        this.turn = !turn;
       }
     }
+    notifyListeners();
   }
 }

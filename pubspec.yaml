@@ -9,7 +9,6 @@ dependencies:
   flutter:
     sdk: flutter
   flare_flutter: ^1.5.15
-  splashscreen: any
   provider: ^4.0.1
 
 dev_dependencies:

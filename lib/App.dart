@@ -24,7 +24,7 @@ class App extends StatelessWidget with FlareController {
       child: Scaffold(
         backgroundColor: Colors.blue,
         appBar: AppBar(
-          backgroundColor: Color(0xFF2C6171),
+          // backgroundColor: Color(0xFF2C6171),
           title: Text(
             'TicTacToe',
             style: TextStyle(fontSize: 25, fontFamily: 'tahoma'),
